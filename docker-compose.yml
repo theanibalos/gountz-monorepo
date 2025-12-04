@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blog_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - blog-network
+
+  web-blog:
+    build:
+      context: .
+      dockerfile: apps/web-blog/Dockerfile
+    ports:
+      - "80:80"
+    container_name: web-blog
+    networks:
+      - blog-network
+
+  back-blog:
+    build:
+      context: .
+      dockerfile: apps/back-blog/Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: back-blog
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=blog_db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+    networks:
+      - blog-network
+
+volumes:
+  postgres_data:
+
+networks:
+  blog-network:
+    driver: bridge

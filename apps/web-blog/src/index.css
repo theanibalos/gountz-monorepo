@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+html {
+	background-color: var(--color-gray-950);
+	color: var(--color-white);
+}
+
+html,
+body {
+	scroll-behavior: smooth;
+	height: 100%;
+	width: 100%;
+}
+
+#root {
+	height: 100%;
+	min-height: 100dvh;
+	width: 100%;
+}

@@ -1,0 +1,21 @@
+{
+	"name": "web-blog",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "rsbuild build",
+		"dev": "rsbuild dev --open",
+		"preview": "rsbuild preview",
+		"format": "biome lint --write",
+		"format:check": "biome check --write"
+	},
+	"devDependencies": {
+		"@rsbuild/core": "^1.6.7",
+		"@tailwindcss/postcss": "4.1.17",
+		"postcss": "8.5.6",
+		"postcss-loader": "8.2.0",
+		"tailwindcss": "4.1.17",
+		"typescript": "^5.9.3"
+	}
+}
